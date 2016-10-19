@@ -15,4 +15,17 @@
     <name>hadoop.proxyuser.root.hosts</name>
     <value>*</value>
   </property>
+    <property>
+        <name>io.compression.codecs</name>
+        <value>
+            <!-- standard and lzo codecs -->
+            org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.BZip2Codec,
+            com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec,
+            <!-- 4mc codecs -->
+            com.hadoop.compression.fourmc.Lz4Codec,com.hadoop.compression.fourmc.Lz4MediumCodec,com.hadoop.compression.fourmc.Lz4HighCodec,com.hadoop.compression.fourmc.Lz4UltraCodec,
+            com.hadoop.compression.fourmc.FourMcCodec,com.hadoop.compression.fourmc.FourMcMediumCodec,com.hadoop.compression.fourmc.FourMcHighCodec,com.hadoop.compression.fourmc.FourMcUltraCodec,
+      <!-- 4mz codecs -->
+      com.hadoop.compression.fourmc.FourMzCodec,com.hadoop.compression.fourmc.FourMzMediumCodec,com.hadoop.compression.fourmc.FourMzHighCodec,com.hadoop.compression.fourmc.FourMzUltraCodec
+        </value>
+    </property>
 </configuration>

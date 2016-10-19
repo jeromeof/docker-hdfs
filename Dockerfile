@@ -1,5 +1,5 @@
 FROM java:7
-MAINTAINER mdouchement
+MAINTAINER jeromeof
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get -qy dist-upgrade
 
-RUN apt-get install -qy rsync curl openssh-server openssh-client vim nfs-common
+RUN apt-get install -qy rsync curl openssh-server openssh-client vim nfs-common wget
 
 RUN mkdir -p /data/hdfs-nfs/
 RUN mkdir -p /opt
@@ -16,6 +16,11 @@ WORKDIR /opt
 # Install Hadoop
 RUN curl -L http://apache.crihan.fr/dist/hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz -s -o - | tar -xzf -
 RUN mv hadoop-2.7.2 hadoop
+
+# Install 4mz and zstd
+# RUN curl -L https://repo1.maven.org/maven2/com/github/luben/zstd-jni/1.1.0/zstd-jni-1.1.0.jar
+RUN wget https://github.com/carlomedas/4mc/releases/download/2.0.0/hadoop-4mc-2.0.0.jar
+RUN mv hadoop-4mc-2.0.0.jar /opt/hadoop/share/hadoop/common/lib
 
 # Setup
 WORKDIR /opt/hadoop
